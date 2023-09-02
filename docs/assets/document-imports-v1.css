@@ -1,0 +1,38 @@
+.document {
+	background-color: #F0E4C8;
+	margin: 5px;
+	margin-bottom: 15px;
+	padding: 10px;
+	/* This converts the document line endings into ones that display in html, similar to using br tags */
+	white-space: pre-line;
+}
+#download_button {
+	
+}
+.download_button {
+	padding: 10px;
+	font-size: 16px;
+	vertical-align: middle;
+	display: inline-block;
+	font-family: sans-serif;
+	background-color: #CCCCCC;
+	border-bottom-color: #666666;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+}
+.download_button:link {
+  color: #111111;
+  text-decoration: none;
+}
+.download_button:visited {
+  color: #111111;
+  text-decoration: none;
+}
+.download_button:hover {
+  color: #111111;
+  text-decoration: none;
+}
+.download_button:active {
+  color: #111111;
+  text-decoration: none;
+}

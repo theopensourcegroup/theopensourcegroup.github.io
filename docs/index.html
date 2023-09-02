@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>- Home</title>
+<script src="/assets/global-variables-v1.js"></script>
+<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+<link rel="shortcut icon" type="image/png" href="/favicon-256x256.png"/>
+<link rel="stylesheet" href="/assets/page-v1.css">
+<style>
+.entry_link {
+	display: inline-block;
+	margin-right: 10px;
+	width: calc(100% - 100px);
+}
+.entry_link:link {
+  color: #181a9b;
+	font-size: 18px;
+	font-family: sans-serif;
+  text-decoration: none;
+}
+.entry_link:visited {
+  color: #181a9b;
+  text-decoration: none;
+}
+.entry_link:hover {
+  color: #181a9b;
+  text-decoration: none;
+}
+.entry_link:active {
+  color: #181a9b;
+  text-decoration: none;
+}
+.entry_type {
+	display: inline-block;
+	padding: 10px;
+	background-color: #e6e6e6;
+	margin-right: 0px;
+	border-radius: 4px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #cecece;
+}
+.entry_break {
+	display: block;
+	min-height: 1px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	min-width: 100%;
+	background-color: #b1b2dd;
+}
+#filters_bar {
+	background-color: #FFFFFF;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	border-bottom-style: dotted;
+	border-bottom-width: 3px;
+	border-bottom-color: #CCCCCC;
+}
+.form_button {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: #CCCCCC;
+	border-width: 0px;
+	margin-top: 10px;
+}
+.checkboxes {
+	display: inline-block;
+}
+.checkboxes_labels {
+	margin-right: 20px;
+}
+#keywords {
+	min-width: calc(100% - 10px);
+	max-width: calc(100% - 10px);
+	padding: 5px;
+	font-size: 18px;
+}
+#tags {
+	min-width: calc(100% - 10px);
+	max-width: calc(100% - 10px);
+	padding: 5px;
+	font-size: 18px;
+}
+.comments_1 {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+.button_previous_button {
+	display: inline-block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: #CCCCCC;
+	border-width: 0px;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+.button_previous_button:link {
+	color: #000000;
+	font-size: 16px;
+	font-family: sans-serif;
+	text-decoration: none;
+}
+.button_previous_button:visited {
+  color: #000000;
+  text-decoration: none;
+}
+.button_previous_button:hover {
+  color: #000000;
+  text-decoration: none;
+}
+.button_previous_button:active {
+  color: #000000;
+  text-decoration: none;
+}
+.button_next_button {
+	display: inline-block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: #CCCCCC;
+	border-width: 0px;
+	margin-top: 10px;
+}
+.button_next_button:link {
+	color: #000000;
+	font-size: 16px;
+	font-family: sans-serif;
+	text-decoration: none;
+}
+.button_next_button:visited {
+  color: #000000;
+  text-decoration: none;
+}
+.button_next_button:hover {
+  color: #000000;
+  text-decoration: none;
+}
+.button_next_button:active {
+  color: #000000;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+<script src="/assets/page-v1.js"></script>
+<script>
+
+</script>
+<div id='content'>
+<div id='filters_bar'>
+<h4>Types:</h4>
+ <input type="checkbox" class='checkboxes' id="types_page" name="types_page" value="Page">
+  <label class='checkboxes_labels' for="types_page">Page</label>
+  <input type="checkbox" class='checkboxes' id="types_post" name="types_post" value="Post" checked>
+  <label class='checkboxes_labels'for="types_page">Post</label>
+  <input type="checkbox" class='checkboxes' id="types_resource" name="types_resource" value="Resource" checked>
+  <label class='checkboxes_labels' for="types_resource">Resource</label>
+
+<h4>Keywords:</h4>
+<form action="/index.html">
+  <input type="text" id='keywords' name="keywords" value=""><br>
+  <h4>Tags:</h4><div class="comments_1">(Seperate tags with commas [e.g., "tag1,tag2"]. Items matching atleast one tag will be returned.)</div>
+  <!-- Currently browse.js is configured so that anything with at least one matching tag will be accepted, as oppsed to requring each thing to match all tags. -->
+  <input type="text" id='tags' name="tags" value=""><br>
+  
+  <input type="hidden" id="types" name="types" value='page,post,resource'>
+  <input type="hidden" id="page" name="page" value="1">
+  <input type="hidden" id="quantity" name="quantity" value="1">
+  
+  <input class='form_button' onclick="update_filter_form()" type="submit" value="Filter">
+</form>
+<script>
+//Checkbox defaults
+	var url = window.location.href;
+	var url = decodeURIComponent(url);
+	var filter_keywords = url.replace(/.*keywords=/, "");
+	var filter_keywords = filter_keywords.replace(/&.*/, "");
+	var filter_keywords = filter_keywords.replace(/=.*/, "");
+	if (url.includes("keywords=") === false) {
+		var filter_keywords = '';
+	}
+	document.getElementById("keywords").value = filter_keywords.replace(/,/g, " ");
+	
+	
+	var filter_tags = url.replace(/.*tags=/, "");
+	var filter_tags = filter_tags.replace(/&.*/, "");
+	var filter_tags = filter_tags.replace(/=.*/, "");
+	if (url.includes("tags=") === false) {
+		var filter_tags = '';
+	}
+	document.getElementById("tags").value = filter_tags.replace(/\+/g, " ");
+	
+	
+	var filter_types = url.replace(/.*types=/, "");
+	var filter_types = filter_types.replace(/&.*/, "");
+	var filter_types = filter_types.replace(/=.*/, "");
+	if (url.includes("types=") === false) {
+		var filter_types = 'post,resource';
+	}
+	if (filter_types.includes("page") === true){
+		document.getElementById("types_page").checked = true;
+	} else {
+		document.getElementById("types_page").checked = false;
+	}
+	if (filter_types.includes("post") === true) {
+		document.getElementById("types_post").checked = true;
+	} else {
+		document.getElementById("types_post").checked = false;
+	}
+	if (filter_types.includes("resource") === true) {
+		document.getElementById("types_resource").checked = true;
+	} else {
+		document.getElementById("types_resource").checked = false;
+	}
+	var filter_page_number = url.replace(/.*page=/, "");
+	var filter_page_number = filter_page_number.replace(/&.*/, "");
+	var filter_page_number = filter_page_number.replace(/=.*/, "");
+	if (url.includes("page=") === false) {
+		var filter_page_number = '1';
+	}
+	document.getElementById("page").value = filter_page_number;
+	var filter_quantity = url.replace(/.*quantity=/, "");
+	var filter_quantity = filter_quantity.replace(/&.*/, "");
+	var filter_quantity = filter_quantity.replace(/=.*/, "");
+	if (url.includes("quantity=") === false) {
+		var filter_quantity = '12';
+	}
+	document.getElementById("quantity").value = filter_quantity;
+function update_filter_form() {
+	//Checkboxes
+	var form_value = '';
+	var check_checkbox = document.getElementById("types_page").checked;
+	if (check_checkbox === true){
+		var form_value = "page";
+	}
+	var check_checkbox = document.getElementById("types_post").checked;
+	if (check_checkbox === true){
+		if (form_value === ''){
+			var form_value = "post";
+		} else {
+			var form_value = form_value.concat(',post');
+		}
+	}
+	var check_checkbox = document.getElementById("types_resource").checked;
+	if (check_checkbox === true){
+		if (form_value === ''){
+			var form_value = "resource";
+		} else {
+			var form_value = form_value.concat(',resource');
+		}
+	}
+	if (form_value === ''){
+		var form_value = 'page,post,resource';
+	}
+	document.getElementById("types").value = form_value;
+	//Keywords
+	document.getElementById("keywords").value = document.getElementById("keywords").value.replace(/ /g, ",");
+}
+</script>
+</div>
+
+
+</div>
+<script src="/assets/browse-v1.js"></script>
+<script src="/assets/global-echos-v1.js"></script>
+</body>
+</html>

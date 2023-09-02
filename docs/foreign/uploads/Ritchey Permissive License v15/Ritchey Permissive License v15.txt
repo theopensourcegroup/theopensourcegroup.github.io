@@ -1,0 +1,29 @@
+﻿Ritchey Permissive License v15:
+
+Subject to the terms of this license, any legal entity who receives material licensed under this license is granted royalty-free, perpetual, non-exclusive permission to do anything with the material which does not violate any part of this license.
+
+Permissions granted apply to any expressions of concepts within the material, but not the concepts themselves (such as those protected by patents).
+
+Permissions granted do not extend to trademarks in the material. If sharing the material verbatim can be done otherwise in compliance with this license it is permitted even with trademarks present.
+
+This license is automatically revoked permanently from the legal entity upon breach of the license terms.
+
+The material is provided "AS IS", without any warranties, guarantees, or representations. No promises are made of fitness for any particular purpose, suitability for merchantability, non infringement, accuracy, or absence of mistakes. Any use of the material is done at the legal entity's own risk.
+
+In the event of legal action, in relation to the material, the maximum compensation to any party is nothing.
+
+When sharing the material, the legal entity is solely responsible for any consequences, and any withstanding obligations to the recipient (including: non disclaimed warranties, non disclaimed guarantees, any representations made).
+
+The material must remain solely licensed under this license.
+
+This license is governed by the laws of the province of British Columbia (as they were on April 21, 2019), and the applicable laws of Canada (as they were on April 21, 2019). Any legal proceedings related to this license may only occur in the courts of British Columbia, or Federal Court of Canada. Any legal proceedings related to the material may only occur in the courts of British Columbia, or Federal Court of Canada.
+
+The legal entity must be capable of being bound to this entire license.
+
+By accepting the license the legal entity agrees to be bound to the entire license.
+
+If any portion of this license is known by the legal entity to have been previously deemed unenforceable, by a court of law, in any applicable jurisdiction, the legal entity cannot accept this license. The legal entity must make an effort to determine this before accepting this license.
+
+If any portions of this license contradict the later portion shall overrule the previous.
+
+The license text is provided under these terms.

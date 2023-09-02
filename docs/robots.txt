@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /databases/
+Disallow: /assets/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://theopensourcegroup.github.io/sitemap.xml

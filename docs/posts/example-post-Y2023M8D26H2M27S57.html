@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>- Example Post Y2023M8D26H2M27S57</title>
+<script src="/assets/global-variables-v1.js"></script>
+<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+<link rel="shortcut icon" type="image/png" href="/favicon-256x256.png"/>
+<link rel="stylesheet" href="/assets/page-v1.css">
+<link rel="stylesheet" href="/assets/post-v1.css">
+<style>
+
+</style>
+</head>
+<body>
+
+<script src="/assets/page-v1.js"></script>
+<script>
+
+</script>
+<div id='content'>
+
+<h1>Example Post Y2023M8D26H2M27S57</h1>
+
+<p>This is an example post.</p>
+
+<script>
+//Set the path to the snippet file. This is used to import the content into this webpage.
+window.file1_path = '/foreign/snippets/ritchey_permissive_license_v15/snippet_1.txt';
+</script>
+<script>
+var file_contents1 = new XMLHttpRequest();
+file_contents1.onload = function(){
+	const n = 0;
+	const element = document.getElementsByClassName("snippet")[n];
+	element.innerHTML = this.responseText;
+}
+file_contents1.open("GET", window.file1_path, true);
+file_contents1.responseType = 'text';
+file_contents1.send();
+</script>
+<p class='snippet' id='snippet1'>The content for this snippet is either unavailable, or failed to load. Check that your browser has Javascript enabled.</p>
+
+<div class='padding_1'></div>
+
+<div class='comment_section'></div>
+	
+<h2>Related Articles</h2>
+<ul>
+<li class='related_articles_list'><a class='default_links' href="/posts/example-post-Y2023M8D26H2M27S57.html">Example Post Y2023M8D26H2M27S44</a> - <span class='sitename'>{$sitename}</span></li>
+</ul>
+
+<h2 class='h2_soft' id='meta_header' onclick="show_hide_meta()">&and; Meta (about this page)</h2>
+<script>
+function show_hide_meta() {	
+	var check = document.getElementById("meta_content").style.display;
+	if (check !== 'none') {
+		document.getElementById("meta_content").style.display = 'none';
+		document.getElementById("meta_header").innerHTML = '&and; Meta (about this page)';
+		document.getElementById("meta_header").classList.toggle("h2_soft");
+	} else {
+		document.getElementById("meta_content").style.display = 'unset';
+		document.getElementById("meta_header").innerHTML = '&or; Meta (about this page)';
+		document.getElementById("meta_header").classList.remove('h2_soft');
+	}
+}
+</script>
+<input type="text" id="inline_clipboard" value="">
+<ul id='meta_content' style='display:none'>
+<li class='meta_list'>Published August 26, 2023. Last updated August 26, 2023.</li>
+<li class='meta_list'>Contributers: James Daniel Marrs Ritchey.</li>
+<li class='meta_list'>Citations: 
+	 <ul class='meta_sub_list'>
+      <li>APA: 
+      <div class="citations_in_text">In Text: <div class="selectable_text" onclick="select_text_v1(this)" id="apa_in_text"></div></div>
+      <div class="citations_references">References: <div class="selectable_text" onclick="select_text_v1(this)" id="apa_references"></div></div>
+      </li>
+      <li>Custom: 
+      <div class="citations_in_text">In Text: <div class="selectable_text" onclick="select_text_v1(this)" id="custom_in_text"></div></div>
+      <div class="citations_references">References: <div class="selectable_text" onclick="select_text_v1(this)" id="custom_references"></div></div>
+      </li>
+    </ul>
+    <script>
+	document.getElementById("apa_in_text").innerHTML = '(Ritchey, 2023)';
+	document.getElementById("apa_references").innerHTML = 'Ritchey, J. (2023). Example Post Y2023M8D26H2M27S57. https://' + baseurl + '/posts/example-post-Y2023M8D26H2M27S57.html.';
+	document.getElementById("custom_in_text").innerHTML = '(https://' + baseurl + '/posts/example-post-Y2023M8D26H2M27S57.html)';
+	document.getElementById("custom_references").innerHTML = sitename + ' - Example Post Y2023M8D26H2M27S57 (https://' + baseurl + '/posts/example-post-Y2023M8D26H2M27S57.html).';
+	function select_text_v1(element) {
+		document.getElementById('inline_clipboard').value = element.innerHTML;
+		var selectable_text = document.getElementsByClassName('selectable_text');
+		for (var i = 0; i < selectable_text.length; i++) {
+			selectable_text[i].style.backgroundColor = '#EEEEEE';
+			selectable_text[i].style.color = 'unset';
+		}
+		element.style.backgroundColor = 'rgb(48, 73, 204)';
+		element.style.color = '#EEEEEE';
+ 		var inline_clipboard = document.getElementById('inline_clipboard');
+ 		inline_clipboard.select();
+ 		navigator.clipboard.writeText(inline_clipboard.value);
+	}
+	</script>
+</li>
+</ul>
+</div>
+<script src="/assets/global-echos-v1.js"></script>
+</body>
+</html>
