@@ -1,8 +1,8 @@
 body {
 	font-size: 16px;
-    	color: #000000;
-    	font-family: sans-serif;
-   	margin: 0px;
+	color: #000000;
+	font-family: sans-serif;
+	margin: 0px;
 }
 a.default_links {
 	color: #181a9b;
@@ -33,6 +33,7 @@ h1 {
 table {
 	border-collapse: collapse;
 	overflow-x: auto;
+	display: block;
 }
 td {
 	border: 1px solid #dddddd;

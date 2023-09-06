@@ -1,0 +1,23 @@
+.snippet {
+	display: block;
+}
+.snippet_license {
+	display: none;
+}
+.snippet_distinguished {
+	border-left-color: #b7b7b7;
+	border-left-style: dotted;
+	border-left-width: 3px;
+	display: block;
+	margin-bottom: 0px;
+	padding-left: 5px;
+}
+.snippet_distinguished_license {
+	margin-top: 0px;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 3px;
+	background-color: #ffda11;
+	display: block;
+	padding: 5px;
+}
