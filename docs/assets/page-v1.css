@@ -59,6 +59,11 @@ th {
 	display: inline-block;
 	font-family: sans-serif;
 }
+@media only screen and (orientation: portrait) {
+  #logo1 {
+    display: block;
+  }
+}
 #logo1:link {
   color: #FFFFFF;
   text-decoration: none;
@@ -87,6 +92,12 @@ th {
 	width: auto;
 	vertical-align: middle;
 }
+@media only screen and (orientation: portrait) {
+  #logo2 {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
 #link_home {
 	padding: 5px;
 	margin-left: 20px;
@@ -95,6 +106,12 @@ th {
 	/* vertical-align: middle; */
 	display: inline-block;
 	font-family: sans-serif;
+}
+@media only screen and (orientation: portrait) {
+  #link_home {
+    margin-left: 10%;
+    padding-left: unset;
+  }
 }
 #link_home:link {
   color: #FFFFFF;
@@ -112,6 +129,33 @@ th {
   color: #FFFFFF;
   text-decoration: none;
 }
+
+#link_search {
+	padding: 5px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	font-size: 18px;
+	/* vertical-align: middle; */
+	display: inline-block;
+	font-family: sans-serif;
+}
+#link_search:link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+#link_search:visited {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+#link_search:hover {
+  color: #EEEEEE;
+  text-decoration: none;
+}
+#link_search:active {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
 #link_about_us {
 	padding: 5px;
 	margin-left: 10px;

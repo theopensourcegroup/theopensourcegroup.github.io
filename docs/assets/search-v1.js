@@ -13,19 +13,6 @@ file_contents.onload = function(){
 	if (url.includes("keywords=") === false) {
 		var filter_keywords = '';
 	}
-	var filter_tags = url.replace(/.*tags=/, "");
-	var filter_tags = filter_tags.replace(/&.*/, "");
-	var filter_tags = filter_tags.replace(/=.*/, "");
-	var filter_tags = filter_tags.replace(/\+/g, " ");
-	if (url.includes("tags=") === false) {
-		var filter_tags = '';
-	}
-	var filter_types = url.replace(/.*types=/, "");
-	var filter_types = filter_types.replace(/&.*/, "");
-	var filter_types = filter_types.replace(/=.*/, "");
-	if (url.includes("types=") === false) {
-		var filter_types = 'post,resource';
-	}
 	var filter_page_number = url.replace(/.*page=/, "");
 	var filter_page_number = filter_page_number.replace(/&.*/, "");
 	var filter_page_number = filter_page_number.replace(/=.*/, "");
@@ -39,8 +26,8 @@ file_contents.onload = function(){
 		var filter_quantity = '12';
 	}
 	//Generate a list of results, and buttons to go to previous/next page
-document.body.onload = create_content_list(filter_quantity, filter_page_number, filter_keywords, filter_tags, filter_types);
-	function create_content_list (quantity, page_number, keywords, tags, types) {
+document.body.onload = create_content_list(filter_quantity, filter_page_number, filter_keywords);
+	function create_content_list (quantity, page_number, keywords) {
 		//Create list
 		const content_list = document.createElement("div");
 		//Add class
@@ -51,37 +38,35 @@ document.body.onload = create_content_list(filter_quantity, filter_page_number, 
 		const selected_element = document.getElementById("content");
 		document.body.insertBefore(content_list, selected_element);
 		var database = window.database_contents.split('\n');
-		//Filter list (starting from the offset, find the first $quantity results which contain the keywords, and match any of the selected types)
+		//Filter list (starting from the offset, find the first $quantity results which contain any of the keywords)
 		window.database_results = '';
 		database.forEach(check_keywords_and_types);
 		function check_keywords_and_types(item, index) {
-			///Split line by | symbol to get an array of 4 values (title, url, type, tags)
+			///Split line by | symbol to get an array of values (title, url, type, tags, etc)
 			var items = item.split('|');
 			var checks = true;
-			///Check type
-			var filter_types_array = filter_types.split(',');
-			var item_type = items[2];
-			if (filter_types_array.includes(item_type) === true){
-				if (checks === true){
-					var checks = true;
-				} else {
-					var checks = false;
-				}
-			} else {
-				var checks = false;
-			}
 			///Check keywords
 			var filter_keywords_array = filter_keywords.toLowerCase().split(',');
 			var item_keywords = items[0].toLowerCase().split(' ');
-			////Foreach filter keyword check if it is in item keywords. If any are missing checks is false.
+			////Foreach filter keyword check if it is in item keywords. If NONE are present checks is false. Otherwise assign a match score.
 			var checks2 = true;
+			var match_score = 0;
 			filter_keywords_array.forEach(check_keywords);
 			function check_keywords(sub_item, sub_index){
 				if (item_keywords.includes(sub_item) === true){
-					//window.checks = true;
+					match_score++;
 				} else {
-					checks2 = false;
+					//checks2 = false;
 				}
+			}
+			
+			var match_total = filter_keywords_array.length;
+			match_total = match_score / match_total;
+			match_total = match_total * 100;
+			match_total = Math.round(match_total);
+			
+			if (match_score == 0) {
+				checks2 = false;
 			}
 			////Fix: If there are no keywords (eg: empty search) this will allow all entries to match
 			if (checks2 === false){
@@ -89,34 +74,60 @@ document.body.onload = create_content_list(filter_quantity, filter_page_number, 
 					checks2 = true;
 				}
 			}
-			///Check tags. Each database entry must contain any of the filter tags. If there are no filter tags there's no need to check. If there are no matches then $checks needs to be false, because the entry is not usuable
-			//console.log(items);
-			var filter_tags_array = filter_tags.toLowerCase().split(',');
-			if (item.length < 1){
-				var item_tags = [];
-			} else {
-				var item_tags = items[3].toLowerCase().split(',');
-			}
-			var checks3 = true;
-			if (filter_tags_array[0] !== ''){
-				window.matching_tags_count = 0;
-				filter_tags_array.forEach(check_tags);
-				function check_tags(item, index) {
-					if (item_tags.includes(item) == true){
-						window.matching_tags_count++;
-					}
-				}
-				if (window.matching_tags_count < 1) {
-					checks3 = false;
-				}
-			}
 			
 			///If useable add to global database_results array
-			if (checks === true && checks2 === true && checks3 === true){
-				window.database_results += item;
-				window.database_results += "\n"
+			if (checks === true && checks2 === true){
+				window.database_results += item + '|' + match_total;
+				window.database_results += "\n";
 			}
 		}
+		
+		
+		///Sort the database by match % (aka alphabetical?)
+		var match_database_0_25 = '';
+		window.match_database_0_25 = match_database_0_25;
+		var match_database_25_50 = '';
+		window.match_database_25_50 = match_database_25_50;
+		var match_database_50_75 = '';
+		window.match_database_50_75 = match_database_50_75;
+		var match_database_75_100 = '';
+		window.match_database_75_100 = match_database_75_100;
+		var database_results_2 = window.database_results.split('\n');
+		database_results_2.forEach(sort_by_match_score);
+		function sort_by_match_score(item, index) {
+			///Split line by | symbol to get an array of values (title, url, type, tags, etc)
+			var items = item.split('|');
+			if (parseInt(items[6]) < 25) {
+				window.match_database_0_25 += item;
+				window.match_database_0_25 += "\n";
+			} else if (parseInt(items[6]) < 50) {
+				window.match_database_25_50 += item;
+				window.match_database_25_50 += "\n";
+			} else if (parseInt(items[6]) < 75) {
+				window.match_database_50_75 += item;
+				window.match_database_50_75 += "\n";
+			} else if (parseInt(items[6]) > 75) {
+				window.match_database_75_100 += item;
+				window.match_database_75_100 += "\n";
+			} else {
+			  //Error. All items should be sorted.
+			}
+		}
+		window.database_results = '';
+		if (window.match_database_75_100 != '') {
+			window.database_results += window.match_database_75_100;
+		}
+		if (window.match_database_50_75 != '') {
+	   	window.database_results += window.match_database_50_75;
+		}
+		if (window.match_database_25_50 != '') {
+			window.database_results += window.match_database_25_50;
+		}
+		if (window.match_database_0_25 != '') {
+			window.database_results += window.match_database_0_25;
+		}
+		//console.log(window.database_results);
+		
 		///Reduce list to specific offset, and quantity
 		if (filter_page_number === '1'){
 			var database_selection_point_1 = 0;
@@ -170,6 +181,24 @@ document.body.onload = create_content_list(filter_quantity, filter_page_number, 
 			entry_subholder.id = entry_subholder_id;
 			///Add to DOM
 			document.getElementById(entry_holder_id).appendChild(entry_subholder);
+			
+			///Create div to list match total
+			if (items[6] != 0) {
+				var entry_match = document.createElement("div");
+				entry_match.className = "entry_match";
+				if (parseInt(items[6]) < 25) {
+					entry_match.className += " entry_match_low";
+				} else if (parseInt(items[6]) < 50) {
+					entry_match.className += " entry_match_low";
+				} else if (parseInt(items[6]) < 75) {
+					entry_match.className += " entry_match_medium";
+				} else if (parseInt(items[6]) > 75) {
+					entry_match.className += " entry_match_high";
+				}
+				entry_match.innerHTML = items[6] + '% match to search input.';
+				///Add to DOM
+				document.getElementById(entry_subholder_id).appendChild(entry_match);
+			}
 			
 			///Create link
 			var entry_link = document.createElement("a");
@@ -236,11 +265,20 @@ document.body.onload = create_content_list(filter_quantity, filter_page_number, 
 			///Add to DOM
 			document.getElementById('content').appendChild(entry_break);
 		}
+		//If there are no search results, add a message.
+		if (window.database_results == '') {
+			var search_message = document.createElement("div");
+			search_message.className = "search_message";
+			search_message.innerHTML = 'Oh no! Your search did not return any results. Rephrasing may help.';
+			///Add to DOM
+			document.getElementById('content').appendChild(search_message);
+		}
+		
 		//Create buttons for navigating to previous (if applicable), and next offset
 		///Create previous button
 		if (page_number > 1) {
 			var previous_page_number = page_number - 1;
-			var url_previous_button = '/index.html' + '?keywords=' + keywords + '&tags=' + tags + '&types=' + types + '&page=' + previous_page_number + '&quantity=' + quantity;
+			var url_previous_button = '/search.html' + '?keywords=' + keywords + '&page=' + previous_page_number + '&quantity=' + quantity;
 			var button_previous_button = document.createElement("a");
 			button_previous_button.className = "button_previous_button";
 			button_previous_button.setAttribute('href', url_previous_button);
@@ -254,7 +292,7 @@ document.body.onload = create_content_list(filter_quantity, filter_page_number, 
 		} else {
 			var next_page_number = page_number;
 			next_page_number++;
-			var url_next_button = '/index.html' + '?keywords=' + keywords + '&tags=' + tags + '&types=' + types + '&page=' + next_page_number + '&quantity=' + quantity;
+			var url_next_button = '/search.html' + '?keywords=' + keywords + '&page=' + next_page_number + '&quantity=' + quantity;
 			var button_next_button = document.createElement("a");
 			button_next_button.className = "button_next_button";
 			button_next_button.setAttribute('href', url_next_button);

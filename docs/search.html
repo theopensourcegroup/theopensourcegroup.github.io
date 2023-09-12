@@ -52,6 +52,21 @@
   }
 }
 
+.entry_match {
+	display: block;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+.entry_match_low {
+	background-color: #ff9c9c;
+}
+.entry_match_medium {
+	background-color: #f4f400;
+}
+.entry_match_high {
+	background-color: #8bfb8b;
+}
+
 .entry_link:link {
   color: #181a9b;
 	font-size: 18px;
@@ -235,26 +250,13 @@
 </script>
 <div id='content'>
 <div id='filters_bar'>
-<h4>Types:</h4>
- <input type="checkbox" class='checkboxes' id="types_page" name="types_page" value="Page">
-  <label class='checkboxes_labels' for="types_page">Page</label>
-  <input type="checkbox" class='checkboxes' id="types_post" name="types_post" value="Post" checked>
-  <label class='checkboxes_labels'for="types_page">Post</label>
-  <input type="checkbox" class='checkboxes' id="types_resource" name="types_resource" value="Resource" checked>
-  <label class='checkboxes_labels' for="types_resource">Resource</label>
-
-<h4>Keywords:</h4>
-<form action="/index.html">
+<h4>Search:</h4>
+<form action="/search.html">
   <input type="text" id='keywords' name="keywords" value=""><br>
-  <h4>Tags:</h4><div class="comments_1">(Seperate tags with commas [e.g., "tag1,tag2"]. Items matching atleast one tag will be returned.)</div>
-  <!-- Currently browse.js is configured so that anything with at least one matching tag will be accepted, as oppsed to requring each thing to match all tags. -->
-  <input type="text" id='tags' name="tags" value=""><br>
-  
-  <input type="hidden" id="types" name="types" value='page,post,resource'>
   <input type="hidden" id="page" name="page" value="1">
   <input type="hidden" id="quantity" name="quantity" value="1">
   
-  <input class='form_button' onclick="update_filter_form()" type="submit" value="Filter">
+  <input class='form_button' onclick="update_filter_form()" type="submit" value="Go">
 </form>
 <script>
 //Checkbox defaults
@@ -268,37 +270,6 @@
 	}
 	document.getElementById("keywords").value = filter_keywords.replace(/,/g, " ");
 	
-	
-	var filter_tags = url.replace(/.*tags=/, "");
-	var filter_tags = filter_tags.replace(/&.*/, "");
-	var filter_tags = filter_tags.replace(/=.*/, "");
-	if (url.includes("tags=") === false) {
-		var filter_tags = '';
-	}
-	document.getElementById("tags").value = filter_tags.replace(/\+/g, " ");
-	
-	
-	var filter_types = url.replace(/.*types=/, "");
-	var filter_types = filter_types.replace(/&.*/, "");
-	var filter_types = filter_types.replace(/=.*/, "");
-	if (url.includes("types=") === false) {
-		var filter_types = 'post,resource';
-	}
-	if (filter_types.includes("page") === true){
-		document.getElementById("types_page").checked = true;
-	} else {
-		document.getElementById("types_page").checked = false;
-	}
-	if (filter_types.includes("post") === true) {
-		document.getElementById("types_post").checked = true;
-	} else {
-		document.getElementById("types_post").checked = false;
-	}
-	if (filter_types.includes("resource") === true) {
-		document.getElementById("types_resource").checked = true;
-	} else {
-		document.getElementById("types_resource").checked = false;
-	}
 	var filter_page_number = url.replace(/.*page=/, "");
 	var filter_page_number = filter_page_number.replace(/&.*/, "");
 	var filter_page_number = filter_page_number.replace(/=.*/, "");
@@ -314,32 +285,6 @@
 	}
 	document.getElementById("quantity").value = filter_quantity;
 function update_filter_form() {
-	//Checkboxes
-	var form_value = '';
-	var check_checkbox = document.getElementById("types_page").checked;
-	if (check_checkbox === true){
-		var form_value = "page";
-	}
-	var check_checkbox = document.getElementById("types_post").checked;
-	if (check_checkbox === true){
-		if (form_value === ''){
-			var form_value = "post";
-		} else {
-			var form_value = form_value.concat(',post');
-		}
-	}
-	var check_checkbox = document.getElementById("types_resource").checked;
-	if (check_checkbox === true){
-		if (form_value === ''){
-			var form_value = "resource";
-		} else {
-			var form_value = form_value.concat(',resource');
-		}
-	}
-	if (form_value === ''){
-		var form_value = 'page,post,resource';
-	}
-	document.getElementById("types").value = form_value;
 	//Keywords
 	document.getElementById("keywords").value = document.getElementById("keywords").value.replace(/ /g, ",");
 }
@@ -348,7 +293,7 @@ function update_filter_form() {
 
 
 </div>
-<script src="/assets/browse-v1.js"></script>
+<script src="/assets/search-v1.js"></script>
 <script src="/assets/global-echos-v1.js"></script>
 </body>
 </html>

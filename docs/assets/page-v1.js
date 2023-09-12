@@ -37,6 +37,15 @@ function create_page_elements () {
 	link_home.id = "link_home";
 	//Add link_home to DOM
 	document.getElementById('header1').appendChild(link_home);
+	
+	//Create link_search
+	const link_search = document.createElement("a");
+	link_search.setAttribute('href', '/search.html');
+	link_search.innerHTML = 'Search';
+	//Add ID
+	link_search.id = "link_search";
+	//Add link_search to DOM
+	document.getElementById('header1').appendChild(link_search);
 
 	//Create link_about_us
 	const link_about_us = document.createElement("a");

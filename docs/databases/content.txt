@@ -1,9 +1,9 @@
-Home|/|page|
-About Us|/pages/about-us.html|page|Meta
-Contact Us|/pages/contact-us.html|page|Meta
-Licensing|/pages/licensing.html|page|Meta
-Privacy Policy|/pages/privacy-policy.html|page|Meta
-Terms of Service|/pages/terms-of-service.html|page|Meta
-Meta|/pages/meta.html|page|Meta
-What Is Opensource?|/posts/what-is-opensource.html|post|Licensing,Opensource
-What Is Closed-Source?|/posts/what-is-closed-source.html|post|Licensing,Proprietary
+Home|/|page|||
+About Us|/pages/about-us.html|page|Meta||
+Contact Us|/pages/contact-us.html|page|Meta||
+Licensing|/pages/licensing.html|page|Meta||
+Privacy Policy|/pages/privacy-policy.html|page|Meta||
+Terms of Service|/pages/terms-of-service.html|page|Meta||
+Meta|/pages/meta.html|page|Meta||
+What Is Opensource?|/posts/what-is-opensource/what-is-opensource.html|post|Opensource,Licensing,Software|/assets/thumbnail-512x288.png|/posts/what-is-opensource/description.txt
+Ritchey Permissive License v15|/foreign/uploads/ritchey_permissive_license_v15//Ritchey Permissive License v15.txt|resource|License||

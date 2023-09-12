@@ -1,0 +1,5 @@
+This is an example snippet. It contains a mixture of plain text, HTML, and CSS. Snippets are useful if you want to keep your content seperate from the website code. This can potentially make upgrading easier in the future, if that's something you plan to do. Snippets are also useful for integrating content that is under different license terms, because keeping the content seperate makes it easier to delete anything that is under a license you no longer wish to use.
+
+<div style='background-color:#CCC;text-align:center;padding:8px;'>This is a div with inline styles.</div>
+
+<div>This is a div without any style provided by the snippet.</div>
